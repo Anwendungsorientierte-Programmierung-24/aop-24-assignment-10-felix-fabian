@@ -11,7 +11,9 @@ class DebugPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('⚠️ Debug Page'),),
+      appBar: AppBar(
+        title: Text('⚠️ Debug Page'),
+      ),
       body: Center(
         child: Column(
           children: [
@@ -25,7 +27,7 @@ class DebugPage extends StatelessWidget {
               ),
               child: Text('Homepage'),
             ),
-              ElevatedButton(
+            ElevatedButton(
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -34,7 +36,7 @@ class DebugPage extends StatelessWidget {
               ),
               child: Text('Login Page'),
             ),
-              ElevatedButton(
+            ElevatedButton(
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
