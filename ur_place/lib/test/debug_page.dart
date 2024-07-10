@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ur_place/pages/home_page.dart';
 import 'package:ur_place/pages/login_page.dart';
 import 'package:ur_place/pages/register_page.dart';
+import 'package:ur_place/test/feature_flags.dart';
 
 class DebugPage extends StatelessWidget {
   const DebugPage({super.key});
@@ -16,6 +17,7 @@ class DebugPage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text('Navigate directly to individual screens.'),
             ElevatedButton(
@@ -44,7 +46,14 @@ class DebugPage extends StatelessWidget {
                 ),
               ),
               child: Text('Register Page'),
-            )
+            ),
+            SizedBox(height: 10),
+            Column(
+              children: [
+                Text('FeatureFlags state:'),
+                Text('enableDebugPage: ${FeatureFlags.enableDebugPage}'),
+              ],
+            ),
           ],
         ),
       ),
