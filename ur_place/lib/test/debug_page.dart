@@ -11,10 +11,11 @@ class DebugPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('⚠️ Debug Page'),),
       body: Center(
         child: Column(
           children: [
+            Text('Navigate directly to individual screens.'),
             ElevatedButton(
               onPressed: () => Navigator.push(
                 context,
