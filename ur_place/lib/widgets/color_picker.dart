@@ -8,6 +8,8 @@ class ColorPicker extends StatefulWidget {
 }
 
 class _ColorPickerState extends State<ColorPicker> {
+  List<Color> _colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors. orange];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +21,7 @@ class _ColorPickerState extends State<ColorPicker> {
             5,
             (index) => ElevatedButton(
               style: ElevatedButton.styleFrom(
-                surfaceTintColor: Color(index*50%255),
+                backgroundColor: _colors[index%_colors.length],
               ),
               onPressed: () => null,
               child: Text('Color $index'),
