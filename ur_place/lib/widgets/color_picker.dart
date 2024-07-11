@@ -15,16 +15,19 @@ class _ColorPickerState extends State<ColorPicker> {
     return Column(
       children: [
         Text('Color Swatch Placeholder'),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(
-            5,
-            (index) => ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _colors[index%_colors.length],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(
+              5,
+              (index) => ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _colors[index%_colors.length],
+                ),
+                onPressed: () => null,
+                child: Text('Color $index'),
               ),
-              onPressed: () => null,
-              child: Text('Color $index'),
             ),
           ),
         ),
