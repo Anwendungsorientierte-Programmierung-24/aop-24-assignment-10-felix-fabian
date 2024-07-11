@@ -1,9 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ur_place/firebase_options.dart';
 import 'package:ur_place/pages/home_page.dart';
 import 'package:ur_place/test/debug_page.dart';
 import 'package:ur_place/test/feature_flag_manager.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  } catch (e) {
+    debugPrint('Error inititalizing Firebase.\n $e');
+  }
   runApp(const MyApp());
 }
 
@@ -23,4 +31,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
