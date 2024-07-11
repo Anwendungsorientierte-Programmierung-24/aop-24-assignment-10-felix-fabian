@@ -8,6 +8,7 @@ class ColorPicker extends StatefulWidget {
 }
 
 class _ColorPickerState extends State<ColorPicker> {
+  
   List<Color> _colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors. orange];
 
   @override
