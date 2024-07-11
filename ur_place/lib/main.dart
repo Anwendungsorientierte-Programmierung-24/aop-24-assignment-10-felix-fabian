@@ -7,10 +7,12 @@ import 'package:ur_place/test/feature_flag_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  } catch (e) {
-    debugPrint('Error inititalizing Firebase.\n $e');
+  if (FFManager.isEnabled(FeatureFlag.enableFirebase)) {
+    try {
+      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    } catch (e) {
+      debugPrint('Error inititalizing Firebase.\n $e');
+    }
   }
   runApp(const MyApp());
 }
