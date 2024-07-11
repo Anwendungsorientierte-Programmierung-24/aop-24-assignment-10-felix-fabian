@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ur_place/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,8 +12,55 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('LoginPage')),
-      body: Center(child: Text('Content')),
+      appBar: AppBar(
+        title: Text('LoginPage'),
+      ),
+      body: Center(
+        child: Container(
+          margin: EdgeInsets.all(30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                autofocus: true,
+                decoration: InputDecoration(hintText: 'E-Mail'),
+              ),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(hintText: 'password'),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Login',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPage(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Register',
+                        style: TextStyle(fontSize: 18),
+                      ))
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
