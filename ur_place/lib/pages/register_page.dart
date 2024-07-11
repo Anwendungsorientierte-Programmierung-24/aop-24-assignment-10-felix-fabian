@@ -8,6 +8,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  // TODO(aleksicf): Hook up to AuthService (see Vorlesung 11)
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
