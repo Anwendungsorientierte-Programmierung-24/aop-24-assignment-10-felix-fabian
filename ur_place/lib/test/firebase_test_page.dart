@@ -37,12 +37,15 @@ class _FireBaseTestPageState extends State<FireBaseTestPage> {
       body: FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
+          
           if (snapshot.hasError) {
             return Center(child: Text('Error initializing Firebase\n${snapshot.error.toString()}'));
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
+            
             final values = snapshot.data!.options.asMap;
+
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
