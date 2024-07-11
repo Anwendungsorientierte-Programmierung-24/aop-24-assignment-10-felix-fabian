@@ -1,12 +1,15 @@
-
 // ignore_for_file: prefer_final_fields
-
 
 enum FeatureFlag {
   // Description: Start program with debug page to directly navigate to pages.
   // Dependencies: none.
   // Default: false.
   enableDebugPage,
+
+  // Description: Initialize Firebase connection in main.
+  // Dependencies: none.
+  // Default: true.
+  enableFirebase,
 
   // Description: Placeholder.
   // Dependencies: <dependencies>.
@@ -15,17 +18,17 @@ enum FeatureFlag {
 }
 
 class FFManager {
-
   // Default feature states
   static const Map<FeatureFlag, bool> _defaultStates = {
     FeatureFlag.enableDebugPage: true,
     FeatureFlag.enableFeatureName: true,
+    FeatureFlag.enableFirebase: true,
   };
 
   // Runtime overrides
-  static Map<FeatureFlag, bool?> _featureOverrides =  {};
+  static Map<FeatureFlag, bool?> _featureOverrides = {};
 
-  // Get cannonical state at runtime.
+  // Get canonical state at runtime.
   static bool isEnabled(FeatureFlag flag) {
     return _featureOverrides[flag] ?? _defaultStates[flag] ?? false;
   }
@@ -37,7 +40,7 @@ class FFManager {
 
   // Reset a feature's state to its default state.
   static void clearFeatureOverride(FeatureFlag flag) {
-    _featureOverrides[flag] = null;
+    _featureOverrides.remove(flag);
   }
 
   // Return a list of all features and their configuration.
@@ -52,13 +55,9 @@ class FFManager {
 
   // Reset all features' runtime overrides.
   static void clearAllFeatureOverrides() {
-    for (FeatureFlag flag in FeatureFlag.values) {
-      _featureOverrides[flag] = null;
-    }
+    _featureOverrides.clear();
   }
 
   static Map<FeatureFlag, bool> get defaultFlags => _defaultStates;
   static Map<FeatureFlag, bool?> get overrides => _featureOverrides;
-  
 }
-
