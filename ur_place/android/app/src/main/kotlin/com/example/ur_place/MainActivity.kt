@@ -1,4 +1,4 @@
-package com.example.ur_place
+package com.aleksicbraun.urplace
 
 import io.flutter.embedding.android.FlutterActivity
 
