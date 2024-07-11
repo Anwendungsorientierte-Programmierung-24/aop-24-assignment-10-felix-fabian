@@ -21,6 +21,10 @@ class AuthService extends ChangeNotifier {
 
   }
 
+  String test() {
+    return "Test";
+  }
+
   // TODO(aleksicf): Implement these methods.
   // createUserWithEmailAndPassword(email, password)
   // signOut()
