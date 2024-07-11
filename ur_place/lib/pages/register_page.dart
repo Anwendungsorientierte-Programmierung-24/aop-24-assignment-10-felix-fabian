@@ -8,11 +8,35 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  // TODO(aleksicf): Hook up to AuthService (see Vorlesung 11)
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('RegisterPage')),
-      body: Center(child: Text('Content')),
+      body: Center(
+        child: Container(
+          margin: EdgeInsets.all(30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                autofocus: true,
+                decoration: InputDecoration(hintText: 'E-Mail'),
+              ),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(hintText: 'Password'),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextButton(onPressed: () {}, child: Text('Register', style: TextStyle(fontSize: 18),))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
