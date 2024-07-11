@@ -32,6 +32,7 @@ class _PixelGridState extends State<PixelGrid> {
       constraints: const BoxConstraints.expand(height: 300, width: 300), // Visual grid container size
       child: GridView.builder(
         itemCount: _pixels.length,
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: size),
         itemBuilder: (context, index) => _pixels[index],
       ),
