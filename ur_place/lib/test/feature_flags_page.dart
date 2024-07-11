@@ -19,12 +19,12 @@ class _FeatureFlagsPageState extends State<FeatureFlagsPage> {
         children: FeatureFlag.values.map((flag) {
           return ListTile(
             title: Text(flag.toString().split('.').last),
-            subtitle: Text('Default: ${FeatureFlagManager.defaultFlags[flag]}, Override: ${FeatureFlagManager.overrides[flag]}'),
+            subtitle: Text('Default: ${FFManager.defaultFlags[flag]}, Override: ${FFManager.overrides[flag]}'),
             trailing: Switch(
-              value: FeatureFlagManager.isEnabled(flag),
+              value: FFManager.isEnabled(flag),
               onChanged: (bool value) {
                 setState(() {
-                  FeatureFlagManager.setFeatureOverride(flag, value);
+                  FFManager.setFeatureOverride(flag, value);
                 });
               },
             ),

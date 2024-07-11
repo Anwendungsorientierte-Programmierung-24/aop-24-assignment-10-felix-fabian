@@ -14,7 +14,7 @@ enum FeatureFlag {
   enableFeatureName
 }
 
-class FeatureFlagManager {
+class FFManager {
 
   // Default feature states
   static const Map<FeatureFlag, bool> _defaultStates = {

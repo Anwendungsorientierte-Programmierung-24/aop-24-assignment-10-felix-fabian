@@ -64,11 +64,11 @@ class _DebugPageState extends State<DebugPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[Text('🚩 FeatureFlags:')] +
                   List.generate(
-                    FeatureFlagManager.getAllFeatureStates().length,
+                    FFManager.getAllFeatureStates().length,
                     (index) => GestureDetector(
                       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FeatureFlagsPage())),
                       child: Text(
-                        FeatureFlagManager.getAllFeatureStates()[index],
+                        FFManager.getAllFeatureStates()[index],
                       ),
                     ),
                   ),

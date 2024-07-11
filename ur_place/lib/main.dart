@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: FeatureFlagManager.isEnabled(FeatureFlag.enableDebugPage) ? const DebugPage() : const HomePage(),
+      home: FFManager.isEnabled(FeatureFlag.enableDebugPage) ? const DebugPage() : const HomePage(),
     );
   }
 }
