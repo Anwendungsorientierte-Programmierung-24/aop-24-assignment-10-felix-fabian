@@ -15,10 +15,13 @@ class _PixelGridState extends State<PixelGrid> {
 
   List<Widget> _pixels = List.generate(
     size * size,
-    (index) => Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black, width: 0.5),
-        color: Colors.red,
+    (index) => GestureDetector(
+      onTap: () => debugPrint('Hit Row ${index~/size}, Column ${index%size}'),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 0.5),
+          color: Colors.red,
+        ),
       ),
     ),
   );
@@ -26,9 +29,10 @@ class _PixelGridState extends State<PixelGrid> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints.expand(height: 300, width: 300),
+      constraints: const BoxConstraints.expand(height: 300, width: 300), // Visual grid container size
       child: GridView.builder(
         itemCount: _pixels.length,
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: size),
         itemBuilder: (context, index) => _pixels[index],
       ),

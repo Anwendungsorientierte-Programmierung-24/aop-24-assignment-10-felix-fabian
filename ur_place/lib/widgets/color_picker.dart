@@ -8,21 +8,26 @@ class ColorPicker extends StatefulWidget {
 }
 
 class _ColorPickerState extends State<ColorPicker> {
+  List<Color> _colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors. orange];
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text('Color Swatch Placeholder'),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(
-            5,
-            (index) => ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                surfaceTintColor: Color(index*50%255),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(
+              5,
+              (index) => ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _colors[index%_colors.length],
+                ),
+                onPressed: () => null,
+                child: Text('Color $index'),
               ),
-              onPressed: () => null,
-              child: Text('Color $index'),
             ),
           ),
         ),
