@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060653087221",
+    "project_id": "ur-place-8f54c",
+    "storage_bucket": "ur-place-8f54c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060653087221:android:de2c2c1804a1abcb74c8bc",
+        "android_client_info": {
+          "package_name": "com.aleksicbraun.urplace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6EE2bGa5lA1_maRv-h7Eh7ztgeNG8a4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
