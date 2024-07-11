@@ -43,16 +43,12 @@ class _FireBaseTestPageState extends State<FireBaseTestPage> {
 
           if (snapshot.connectionState == ConnectionState.done) {
             final values = snapshot.data!.options.asMap;
-
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   const Text('Firebase is successfully connected! ✅\n'),
-                  ...values.entries.map((entry) => Text('${entry.key}: ${entry.value}\n')).followedBy([
-                    Text('Provider -------------------'),
-                    Text(test.test()),
-                  ]),
+                  ...values.entries.map((entry) => Text('${entry.key}: ${entry.value}\n')),
                 ],
               ),
             );
