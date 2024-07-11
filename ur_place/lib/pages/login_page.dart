@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextField(
                 obscureText: true,
-                decoration: InputDecoration(hintText: 'password'),
+                decoration: InputDecoration(hintText: 'Password'),
               ),
               SizedBox(
                 height: 20,
@@ -43,18 +43,19 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        'Register',
-                        style: TextStyle(fontSize: 18),
-                      ))
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Register',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  )
                 ],
               )
             ],
