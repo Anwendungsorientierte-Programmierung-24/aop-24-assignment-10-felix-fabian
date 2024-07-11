@@ -43,11 +43,6 @@ class FFManager {
     _featureOverrides.remove(flag);
   }
 
-  // Get if feature has an active override.
-  static bool hasOverride(FeatureFlag flag) {
-    return _featureOverrides.containsKey(flag);
-  }
-
   // Return a list of all features and their configuration.
   static List<String> getAllFeatureStates() {
     List<String> ret_val = [];
