@@ -6,6 +6,7 @@ import 'package:ur_place/pages/login_page.dart';
 import 'package:ur_place/pages/register_page.dart';
 import 'package:ur_place/test/feature_flag_manager.dart';
 import 'package:ur_place/test/feature_flags_page.dart';
+import 'package:ur_place/test/firebase_test_page.dart';
 
 class DebugPage extends StatefulWidget {
   const DebugPage({super.key});
@@ -58,6 +59,15 @@ class _DebugPageState extends State<DebugPage> {
                 ),
               ),
               child: Text('Register Page'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FireBaseTestPage(),
+                ),
+              ),
+              child: Text('Firebase Test Page'),
             ),
             SizedBox(height: 10),
             Column(
