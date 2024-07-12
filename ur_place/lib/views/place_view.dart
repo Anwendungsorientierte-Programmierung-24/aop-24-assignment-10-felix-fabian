@@ -26,12 +26,12 @@ class _PlaceViewState extends State<PlaceView> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Text('Content'),
         PixelGrid(
           pixelColors: _pixelColors,
           size: size,
           changed: (value) => setState(() => _pixelColors[value] = _brushColor),
         ),
+        const SizedBox(height: 30),
         ColorPicker(setBrushColor: (color) => setBrushColor(color)),
       ],
     );
