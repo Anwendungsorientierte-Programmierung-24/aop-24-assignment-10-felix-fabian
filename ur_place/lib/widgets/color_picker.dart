@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ColorPicker extends StatefulWidget {
-  const ColorPicker({super.key});
+class ColorPicker extends StatelessWidget {
+  ColorPicker({super.key});
 
-  @override
-  State<ColorPicker> createState() => _ColorPickerState();
-}
-
-class _ColorPickerState extends State<ColorPicker> {
   List<Color> _colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors. orange];
 
   @override
