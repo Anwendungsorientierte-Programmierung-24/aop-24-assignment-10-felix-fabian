@@ -16,23 +16,23 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LoginPage'),
+        title: const Text('LoginPage'),
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(30),
+          margin: const EdgeInsets.all(30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
+              const TextField(
                 autofocus: true,
                 decoration: InputDecoration(hintText: 'E-Mail'),
               ),
-              TextField(
+              const TextField(
                 obscureText: true,
                 decoration: InputDecoration(hintText: 'Password'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Login',
                       style: TextStyle(fontSize: 18),
                     ),
@@ -50,11 +50,11 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => RegisterPage(),
+                          builder: (context) => const RegisterPage(),
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'Register',
                       style: TextStyle(fontSize: 18),
                     ),
