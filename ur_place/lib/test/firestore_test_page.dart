@@ -53,7 +53,11 @@ class _FireBaseStatusTestPageState extends State<FireBaseStatusTestPage> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             FutureBuilder(
+<<<<<<< HEAD
               future: _firestore.collectionGroup('canvas').get(),
+=======
+              future: _firestore.collectionGroup('canvas').limit(5).get(),
+>>>>>>> c9e8966 (Initial Cloud Firestore enablement work. (#17))
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
