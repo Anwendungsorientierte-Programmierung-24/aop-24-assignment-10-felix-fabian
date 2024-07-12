@@ -6,13 +6,11 @@ class PixelGrid extends StatelessWidget {
   final ValueChanged _changed;
   final List<Color> _pixelColors;
   final int _size;
-  
-  PixelGrid({required List<Color> pixelColors, required ValueChanged changed, required int size, super.key})
+
+  const PixelGrid({required List<Color> pixelColors, required ValueChanged changed, required int size, super.key})
       : _changed = changed,
         _pixelColors = pixelColors,
         _size = size;
-
-  Color brushColor = Colors.red;
 
   @override
   Widget build(BuildContext context) {

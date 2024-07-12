@@ -9,7 +9,10 @@ class PlaceView extends StatefulWidget {
   State<PlaceView> createState() => _PlaceViewState();
 }
 
-class _PlaceViewState extends State<PlaceView> {
+class _PlaceViewState extends State<PlaceView> { 
+
+  //TODO(fbraun): Hook this up to firebase.
+  
   static int size = 10;
   List<Color> _pixelColors = List.generate(100, (index) => Colors.black);
 
