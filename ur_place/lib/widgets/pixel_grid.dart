@@ -2,39 +2,36 @@
 
 import 'package:flutter/material.dart';
 
-class PixelGrid extends StatefulWidget {
-  const PixelGrid({super.key});
+class PixelGrid extends StatelessWidget {
+  final ValueChanged _changed;
+  final List<Color> _pixelColors;
+  final int _size;
 
-  @override
-  State<PixelGrid> createState() => _PixelGridState();
-}
-
-class _PixelGridState extends State<PixelGrid> {
-  
-  static int size = 10;
-
-  List<Widget> _pixels = List.generate(
-    size * size,
-    (index) => GestureDetector(
-      onTap: () => debugPrint('Hit Row ${index~/size}, Column ${index%size}'),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 0.5),
-          color: Colors.red,
-        ),
-      ),
-    ),
-  );
+  const PixelGrid({required List<Color> pixelColors, required ValueChanged changed, required int size, super.key})
+      : _changed = changed,
+        _pixelColors = pixelColors,
+        _size = size;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(height: 300, width: 300), // Visual grid container size
       child: GridView.builder(
-        itemCount: _pixels.length,
+        itemCount: _pixelColors.length,
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: size),
-        itemBuilder: (context, index) => _pixels[index],
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: _size),
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            debugPrint('Hit Row ${index ~/ _size}, Column ${index % _size}');
+            _changed(index);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 0.5),
+              color: _pixelColors[index],
+            ),
+          ),
+        ),
       ),
     );
   }
