@@ -4,7 +4,9 @@ import 'package:ur_place/pages/login_page.dart';
 import 'package:ur_place/pages/register_page.dart';
 import 'package:ur_place/test/feature_flag_manager.dart';
 import 'package:ur_place/test/feature_flags_page.dart';
-import 'package:ur_place/test/firebase_test_page.dart';
+import 'package:ur_place/test/firebase_login_test_page.dart';
+import 'package:ur_place/test/firebase_status_test_page.dart';
+import 'package:ur_place/test/firestore_test_page.dart';
 
 class DebugPage extends StatefulWidget {
   const DebugPage({super.key});
@@ -52,9 +54,18 @@ class _DebugPageState extends State<DebugPage> {
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage())),
                 child: const Text('Register Page'),
               ),
+              const Text('⚠️ Internal Pages: '),
               ElevatedButton(
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseTestPage())),
-                child: const Text('Firebase Test Page'),
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseLoginTestPage())),
+                child: const Text('⚠️ Firebase Login Test Page'),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseStatusTestPage())),
+                child: const Text('⚠️ Firebase Status Test Page'),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseVerboseStatusTestPage())),
+                child: const Text('⚠️ Firebase Status Test Page (verbose)'),
               ),
               const SizedBox(height: 20),
               if (runtimeOverrides.isNotEmpty)
