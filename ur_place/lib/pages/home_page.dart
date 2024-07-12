@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:ur_place/views/place_container.dart';
+import 'package:ur_place/views/place_view.dart';
 import 'package:ur_place/widgets/color_picker.dart';
 import 'package:ur_place/widgets/pixel_grid.dart';
 
