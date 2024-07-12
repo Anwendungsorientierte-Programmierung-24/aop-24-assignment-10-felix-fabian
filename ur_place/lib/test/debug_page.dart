@@ -39,7 +39,7 @@ class _DebugPageState extends State<DebugPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text('Navigate directly to individual screens.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const Text('Navigate directly to individual screens:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87)),
               ElevatedButton(
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage())),
                 child: const Text('Homepage'),
@@ -67,10 +67,7 @@ class _DebugPageState extends State<DebugPage> {
                     ),
                     const SizedBox(height: 10),
                     ...runtimeOverrides.map((feature) => GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const FeatureFlagsPage()),
-                          ),
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FeatureFlagsPage())),
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 4),
                             padding: const EdgeInsets.all(8),
