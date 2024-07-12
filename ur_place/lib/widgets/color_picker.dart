@@ -17,7 +17,7 @@ class ColorPicker extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(
-              5,
+              _colors.length,
               (index) => ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: _colors[index % _colors.length]),
                 onPressed: () => _changed(_colors[index]),
