@@ -65,7 +65,11 @@ class _DebugPageState extends State<DebugPage> {
               ),
               ElevatedButton(
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireStoreTestPage())),
+<<<<<<< HEAD
                 child: const Text('⚠️ Firestore Test Page'),
+=======
+                child: const Text('⚠️ Firebase Information Test Page'),
+>>>>>>> 121a769 (Create dedicated debug pages for login/state/firestore.)
               ),
               const SizedBox(height: 20),
               if (runtimeOverrides.isNotEmpty)

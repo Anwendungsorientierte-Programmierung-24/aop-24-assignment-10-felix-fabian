@@ -10,7 +10,7 @@ class FireStoreTestPage extends StatefulWidget {
 }
 
 class _FireStoreTestPageState extends State<FireStoreTestPage> {
- final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
