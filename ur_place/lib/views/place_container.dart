@@ -10,7 +10,6 @@ class PlaceView extends StatefulWidget {
 }
 
 class _PlaceViewState extends State<PlaceView> {
-  //TODO(fbraun): Pass this as paramter. We probably won't need this to be stateful anymore then, either.
   static int size = 10;
   List<Color> _pixelColors = List.generate(100, (index) => Colors.black);
 
@@ -30,7 +29,7 @@ class _PlaceViewState extends State<PlaceView> {
           size: size,
           changed: (value) => setState(() => _pixelColors[value] = _brushColor),
         ),
-        ColorPicker(),
+        ColorPicker(setBrushColor: (color) => setBrushColor(color)),
       ],
     );
   }
