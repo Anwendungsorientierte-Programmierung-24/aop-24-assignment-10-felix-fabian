@@ -24,14 +24,13 @@ class _PlaceViewState extends State<PlaceView> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      // mainAxisSize: MainAxisSize.max,
       children: [
         PixelGrid(
           pixelColors: _pixelColors,
           size: _size,
           changed: (value) => setState(() => _pixelColors[value] = _brushColor),
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         ColorPicker(setBrushColor: (color) => setBrushColor(color)),
       ],
     );
