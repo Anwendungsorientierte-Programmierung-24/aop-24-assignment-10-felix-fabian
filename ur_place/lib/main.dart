@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +13,15 @@ import 'data/auth_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (FFManager.isEnabled(FeatureFlag.enableFirebase)) {
-    try {
-      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    } catch (e) {
-      debugPrint('Error inititalizing Firebase.\n $e');
-    }
+
+  try {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  } catch (e) {
+    debugPrint('Error inititalizing Firebase.\n $e');
   }
+
+  FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: true);
+  
   runApp(
     ChangeNotifierProvider(
       create: (context) => AuthService(),
