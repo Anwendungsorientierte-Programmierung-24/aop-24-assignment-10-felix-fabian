@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ur_place/views/place_view.dart';
-import 'package:ur_place/widgets/color_picker.dart';
-import 'package:ur_place/widgets/pixel_grid.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,11 +13,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(title: Text('HomePage')),
-      body: Center(
-        child: PlaceView(),
+      body: Column(
+        children: [
+          const Text('TODO(fbraun): Not final UI.', style: TextStyle(color: Colors.red,fontSize: 20)),
+          SizedBox(height: 150),
+          Center(
+            child: PlaceView(),
+          ),
+        ],
       ),
     );
   }
