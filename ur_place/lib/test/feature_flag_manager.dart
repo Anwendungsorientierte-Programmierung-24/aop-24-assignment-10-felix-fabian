@@ -50,12 +50,12 @@ class FFManager {
 
   // Return a list of all features and their configuration.
   static List<String> getAllFeatureStates() {
-    List<String> ret_val = [];
+    List<String> retVal = [];
     for (FeatureFlag flag in FeatureFlag.values) {
       String feature = 'Feature "${flag.toString().split('.').last}": ${isEnabled(flag)} (Override: ${_featureOverrides[flag]}, Default: ${_defaultStates[flag]})';
-      ret_val.add(feature);
+      retVal.add(feature);
     }
-    return ret_val;
+    return retVal;
   }
 
   // Reset all features' runtime overrides.
