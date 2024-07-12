@@ -9,11 +9,11 @@ class PlaceView extends StatefulWidget {
   State<PlaceView> createState() => _PlaceViewState();
 }
 
-class _PlaceViewState extends State<PlaceView> {
-  //TODO(fbraun): Hook this up to firebase.
-  //TODO(fbraun): Implement pixel placement cooldown.
+class _PlaceViewState extends State<PlaceView> { 
 
-  static int _size = 10;
+  //TODO(fbraun): Hook this up to firebase.
+  
+  static int size = 10;
   List<Color> _pixelColors = List.generate(100, (index) => Colors.black);
 
   Color _brushColor = Colors.red;
@@ -24,13 +24,14 @@ class _PlaceViewState extends State<PlaceView> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.max,
       children: [
         PixelGrid(
           pixelColors: _pixelColors,
-          size: _size,
+          size: size,
           changed: (value) => setState(() => _pixelColors[value] = _brushColor),
         ),
-        const SizedBox(height: 50),
+        const SizedBox(height: 30),
         ColorPicker(setBrushColor: (color) => setBrushColor(color)),
       ],
     );
