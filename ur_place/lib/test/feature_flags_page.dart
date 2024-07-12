@@ -13,7 +13,7 @@ class _FeatureFlagsPageState extends State<FeatureFlagsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('⚠️ Debug Page - Feature Flags'),
+        title: const Text('⚠️ Debug Page - Feature Flags'),
       ),
       body: ListView(
         children: FeatureFlag.values.map((flag) {
@@ -26,7 +26,7 @@ class _FeatureFlagsPageState extends State<FeatureFlagsPage> {
               children: [
                 if (hasOverride)
                   IconButton(
-                    icon: Icon(Icons.clear),
+                    icon: const Icon(Icons.clear),
                     onPressed: () {
                       setState(() {
                         FFManager.clearFeatureOverride(flag);
