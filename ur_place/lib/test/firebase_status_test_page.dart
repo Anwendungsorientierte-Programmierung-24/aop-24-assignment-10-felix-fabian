@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ur_place/data/auth_service.dart';
 
-class FireBaseStatusTestPage extends StatefulWidget {
-  const FireBaseStatusTestPage({super.key});
+class FireBaseVerboseStatusTestPage extends StatefulWidget {
+  const FireBaseVerboseStatusTestPage({super.key});
 
   @override
-  State<FireBaseStatusTestPage> createState() => _FireBaseStatusTestPageState();
+  State<FireBaseVerboseStatusTestPage> createState() => _FireBaseVerboseStatusTestPageState();
 }
 
-class _FireBaseStatusTestPageState extends State<FireBaseStatusTestPage> {
+class _FireBaseVerboseStatusTestPageState extends State<FireBaseVerboseStatusTestPage> {
   late AuthService test;
 
   @override

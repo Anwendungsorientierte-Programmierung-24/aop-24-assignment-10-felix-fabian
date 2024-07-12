@@ -56,20 +56,16 @@ class _DebugPageState extends State<DebugPage> {
               ),
               const Text('⚠️ Internal Pages: '),
               ElevatedButton(
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseStatusTestPage())),
-                child: const Text('⚠️ Firebase Verbose Status'),
-              ),
-              ElevatedButton(
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseLoginTestPage())),
                 child: const Text('⚠️ Firebase Login Test Page'),
               ),
               ElevatedButton(
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireStoreTestPage())),
-<<<<<<< HEAD
-                child: const Text('⚠️ Firestore Test Page'),
-=======
-                child: const Text('⚠️ Firebase Information Test Page'),
->>>>>>> 121a769 (Create dedicated debug pages for login/state/firestore.)
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseStatusTestPage())),
+                child: const Text('⚠️ Firebase Status Test Page'),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FireBaseVerboseStatusTestPage())),
+                child: const Text('⚠️ Firebase Status Test Page (verbose)'),
               ),
               const SizedBox(height: 20),
               if (runtimeOverrides.isNotEmpty)
