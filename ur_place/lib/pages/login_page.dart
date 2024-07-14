@@ -37,6 +37,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('LoginPage'),
+        actions: [
+          IconButton(onPressed: () {
+            setState(() {
+              _auth.signOut();
+            });
+          }, icon: Icon(Icons.logout))
+        ],
       ),
       body: Center(
         child: Container(
