@@ -10,7 +10,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  // TODO(aleksicf): Hook up to AuthService (see Vorlesung 11)
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -41,18 +40,22 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextField(
+              TextField(
                 autofocus: true,
                 decoration: InputDecoration(hintText: 'E-Mail'),
+                controller: _emailController,
               ),
-              const TextField(
+              TextField(
                 obscureText: true,
                 decoration: InputDecoration(hintText: 'Password'),
+                controller: _passwordController,
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextButton(onPressed: () {}, child: const Text('Register', style: TextStyle(fontSize: 18),))
+              TextButton(onPressed: () {
+                _createAccount();
+              }, child: const Text('Register', style: TextStyle(fontSize: 18),))
             ],
           ),
         ),
