@@ -42,12 +42,12 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               TextField(
                 autofocus: true,
-                decoration: InputDecoration(hintText: 'E-Mail'),
+                decoration: const InputDecoration(hintText: 'E-Mail'),
                 controller: _emailController,
               ),
               TextField(
                 obscureText: true,
-                decoration: InputDecoration(hintText: 'Password'),
+                decoration: const InputDecoration(hintText: 'Password'),
                 controller: _passwordController,
               ),
               const SizedBox(
