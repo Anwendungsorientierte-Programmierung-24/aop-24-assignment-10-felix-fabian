@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  // TODO(aleksicf): Hook up to AuthService (see Vorlesung 11)
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -45,13 +44,15 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextField(
+              TextField(
                 autofocus: true,
                 decoration: InputDecoration(hintText: 'E-Mail'),
+                controller: _emailController,
               ),
-              const TextField(
+              TextField(
                 obscureText: true,
                 decoration: InputDecoration(hintText: 'Password'),
+                controller: _passwordController,
               ),
               const SizedBox(
                 height: 20,
