@@ -25,9 +25,9 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Logged in as: ${userCredential.user?.email}')),
       );
-    } catch (e) {
+    } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to log in: $e')),
+        SnackBar(content: Text('Failed to log in: $error')),
       );
     }
   }

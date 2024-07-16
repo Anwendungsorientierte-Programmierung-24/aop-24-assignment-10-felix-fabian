@@ -23,9 +23,9 @@ class _RegisterPageState extends State<RegisterPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Account created: ${userCredential.user?.email}')),
       );
-    } catch (e) {
+    } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to create account: $e')),
+        SnackBar(content: Text('Failed to create account: $error')),
       );
     }
   }
