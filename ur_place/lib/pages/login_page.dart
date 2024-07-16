@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text,
       );
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Logged in: ${userCredential.user?.email}')),
+        SnackBar(content: Text('Logged in as: ${userCredential.user?.email}')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
