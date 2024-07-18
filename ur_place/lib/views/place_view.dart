@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ur_place/widgets/color_picker.dart';
@@ -96,7 +95,7 @@ class _PlaceViewState extends State<PlaceView> {
                     },
                   ),
                   const SizedBox(height: 30),
-                  ColorPicker(setBrushColor: (color) => setBrushColor(color)),
+                  ColorPicker(setBrushColor: (color) => setBrushColor(color), currentColor: ColorPicker.colors.indexOf(_brushColor)),
                 ],
               );
             },
