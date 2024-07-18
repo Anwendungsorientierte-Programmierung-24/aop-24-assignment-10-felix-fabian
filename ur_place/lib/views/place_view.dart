@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ur_place/widgets/color_picker.dart';
@@ -18,15 +17,18 @@ class _PlaceViewState extends State<PlaceView> {
   static const int size = 10;
   Color _brushColor = Colors.black;
   final String _documentId = 'mzBvkuRWSE4twbGQH76n';
+  Map<String, dynamic> canvas = {};
 
   @override
   void initState() {
     super.initState();
+    _loadInitialCanvas();
   }
 
-  Future<Map<String, dynamic>> _loadInitialCanvas() async {
+  void _loadInitialCanvas() async {
     DocumentSnapshot doc = await _firestore.collection('canvas').doc(_documentId).get();
-    return doc.data() as Map<String, dynamic>;
+    canvas = await doc.data() as Map<String, dynamic>;
+    setState(() {});
   }
 
   void setBrushColor(Color color) => setState(() => _brushColor = color);
@@ -34,9 +36,7 @@ class _PlaceViewState extends State<PlaceView> {
   Future<void> _updatePixelColor(int index) async {
     try {
       await _firestore.collection('canvas').doc(_documentId).update(
-        {
-          index.toString(): ColorPicker.colors.indexOf(_brushColor),
-        },
+        {index.toString(): ColorPicker.colors.indexOf(_brushColor)},
       );
     } catch (e) {
       debugPrint('Error updating pixel color: $e');
@@ -45,65 +45,35 @@ class _PlaceViewState extends State<PlaceView> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Map<String, dynamic>>(
-      future: _loadInitialCanvas(),
+    return StreamBuilder<DocumentSnapshot>(
+      stream: _firestore.collection('canvas').doc(_documentId).snapshots(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        if (snapshot.hasError) {
-          return const Center(child: Text('Error loading canvas'));
-        }
-
+        // Update with online data if it's available right now.
         if (snapshot.hasData) {
-          Map<String, dynamic> initialData = snapshot.data!;
-          _pixelColors = List<int>.generate(
-            size * size,
-            (index) => initialData[index.toString()] ?? 0,
-          );
-
-          return StreamBuilder<DocumentSnapshot>(
-            stream: _firestore.collection('canvas').doc(_documentId).snapshots(),
-            builder: (context, snapshot) {
-
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              }
-
-              if (snapshot.hasError) {
-                return const Center(child: Text('Error loading live canvas updates'));
-              }
-
-              if (snapshot.hasData) {
-                Map<String, dynamic> liveData = snapshot.data!.data() as Map<String, dynamic>;
-                _pixelColors = List<int>.generate(
-                  size * size,
-                  (index) => liveData[index.toString()] ?? 0,
-                );
-              }
-
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  PixelGrid(
-                    pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
-                    size: size,
-                    changed: (value) {
-                      setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
-                      _updatePixelColor(value);
-                    },
-                  ),
-                  const SizedBox(height: 30),
-                  ColorPicker(setBrushColor: (color) => setBrushColor(color)),
-                ],
-              );
-            },
-          );
+          canvas = snapshot.data!.data() as Map<String, dynamic>;
         }
 
-        return const Center(child: Text('No data available'));
+        _pixelColors = List<int>.generate(
+          size * size,
+          (index) => canvas[index.toString()] ?? 0,
+        );
+
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            PixelGrid(
+              pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
+              size: size,
+              changed: (value) {
+                setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
+                _updatePixelColor(value);
+              },
+            ),
+            const SizedBox(height: 30),
+            ColorPicker(setBrushColor: (color) => setBrushColor(color), currentColor: ColorPicker.colors.indexOf(_brushColor)),
+          ],
+        );
       },
     );
   }
