@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +14,7 @@ class PlaceView extends StatefulWidget {
 class _PlaceViewState extends State<PlaceView> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  List<int> _pixelColorIndices = List.generate(100, (index) => 0); // Default to black
+  List<int> _pixelColors = List.generate(100, (index) => 0); // Default to black
   static const int size = 10;
   Color _brushColor = Colors.black;
   final String _documentId = 'mzBvkuRWSE4twbGQH76n';
@@ -59,7 +58,7 @@ class _PlaceViewState extends State<PlaceView> {
 
         if (snapshot.hasData) {
           Map<String, dynamic> initialData = snapshot.data!;
-          _pixelColorIndices = List<int>.generate(
+          _pixelColors = List<int>.generate(
             size * size,
             (index) => initialData[index.toString()] ?? 0,
           );
@@ -67,6 +66,7 @@ class _PlaceViewState extends State<PlaceView> {
           return StreamBuilder<DocumentSnapshot>(
             stream: _firestore.collection('canvas').doc(_documentId).snapshots(),
             builder: (context, snapshot) {
+
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -77,7 +77,7 @@ class _PlaceViewState extends State<PlaceView> {
 
               if (snapshot.hasData) {
                 Map<String, dynamic> liveData = snapshot.data!.data() as Map<String, dynamic>;
-                _pixelColorIndices = List<int>.generate(
+                _pixelColors = List<int>.generate(
                   size * size,
                   (index) => liveData[index.toString()] ?? 0,
                 );
@@ -88,10 +88,10 @@ class _PlaceViewState extends State<PlaceView> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   PixelGrid(
-                    pixelColors: _pixelColorIndices.map((e) => ColorPicker.colors[e]).toList(),
+                    pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
                     size: size,
                     changed: (value) {
-                      setState(() => _pixelColorIndices[value] = ColorPicker.colors.indexOf(_brushColor));
+                      setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
                       _updatePixelColor(value);
                     },
                   ),
