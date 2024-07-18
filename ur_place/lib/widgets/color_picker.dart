@@ -29,7 +29,7 @@ class _ColorPickerState extends State<ColorPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100, // Adjust height as needed to fit within the layout
+      height: 150, // Adjust height as needed to fit within the layout
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4, // Number of columns
@@ -39,6 +39,13 @@ class _ColorPickerState extends State<ColorPicker> {
         ),
         itemCount: ColorPicker.colors.length,
         itemBuilder: (context, index) {
+          Color borderColor;
+          if (index == widget._currentColor) {
+            borderColor = Colors.yellow;
+          } else {
+            borderColor = Colors.transparent;
+          }
+          
           return GestureDetector(
             onTap: () {
               setState(() => widget._currentColor = index); // We store the current color locally so we can update our visual selection.
@@ -50,7 +57,7 @@ class _ColorPickerState extends State<ColorPicker> {
               decoration: BoxDecoration(
                 color: ColorPicker.colors[index],
                 border: Border.all(
-                  color: index == widget._currentColor ? Colors.yellow : Colors.transparent,
+                  color: borderColor,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(5),
