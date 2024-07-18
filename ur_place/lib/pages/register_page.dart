@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -9,7 +10,25 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  // TODO(aleksicf): Hook up to AuthService (see Vorlesung 11)
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _createAccount() async {
+    try {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Account created: ${userCredential.user?.email}')),
+      );
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to create account: $error')),
+      );
+    }
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -21,18 +40,22 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextField(
+              TextField(
                 autofocus: true,
-                decoration: InputDecoration(hintText: 'E-Mail'),
+                decoration: const InputDecoration(hintText: 'E-Mail'),
+                controller: _emailController,
               ),
-              const TextField(
+              TextField(
                 obscureText: true,
-                decoration: InputDecoration(hintText: 'Password'),
+                decoration: const InputDecoration(hintText: 'Password'),
+                controller: _passwordController,
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextButton(onPressed: () {}, child: const Text('Register', style: TextStyle(fontSize: 18),))
+              TextButton(onPressed: () {
+                _createAccount();
+              }, child: const Text('Register', style: TextStyle(fontSize: 18),))
             ],
           ),
         ),
