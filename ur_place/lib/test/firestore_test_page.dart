@@ -65,7 +65,35 @@ class _FireBaseStatusTestPageState extends State<FireBaseStatusTestPage> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: snapshot.data!.docs.map((doc) {
-                      return Text('Collection: ${doc.reference.path}');
+                      return Column(
+                        children: [
+                          
+                          Text('Collection: ${doc.reference.path}'),
+
+                          FutureBuilder<DocumentSnapshot>(
+                            future: doc.reference.get(),
+                            builder: (context, AsyncSnapshot<DocumentSnapshot> docSnapshot) {
+                              if (docSnapshot.connectionState == ConnectionState.waiting) {
+                                return const CircularProgressIndicator();
+                              } else if (docSnapshot.hasError) {
+                                return Text('Error: ${docSnapshot.error}');
+                              } else if (!docSnapshot.hasData || !docSnapshot.data!.exists) {
+                                return const Text('No data found.');
+                              } else {
+                                Map<String, dynamic> data = docSnapshot.data!.data() as Map<String, dynamic>;
+
+                                // Printing out all the pixels
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: data.entries.map((entry) {
+                                    return Text('Pixel ${entry.key}: ${entry.value}');
+                                  }).toList(),
+                                );
+                              }
+                            },
+                          ),
+                        ],
+                      );
                     }).toList(),
                   );
                 }

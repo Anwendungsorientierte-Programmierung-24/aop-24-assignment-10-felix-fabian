@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class ColorPicker extends StatelessWidget {
   final ValueChanged _changed;
-  final List<Color> _colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange];
+  
+  static final List<Color> colors = [Colors.black, Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange];
+
 
   ColorPicker({required ValueChanged setBrushColor, super.key}) : _changed = setBrushColor;
 
@@ -17,10 +19,10 @@ class ColorPicker extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(
-              _colors.length,
+              colors.length,
               (index) => ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: _colors[index % _colors.length]),
-                onPressed: () => _changed(_colors[index]),
+                style: ElevatedButton.styleFrom(backgroundColor: colors[index % colors.length]),
+                onPressed: () => _changed(colors[index]),
                 child: Text('Color $index'),
               ),
             ),
