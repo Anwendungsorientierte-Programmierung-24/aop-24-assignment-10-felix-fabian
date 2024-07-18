@@ -24,7 +24,18 @@ class _ColorPickerState extends State<ColorPicker> {
             mainAxisSize: MainAxisSize.min,
             children: List.generate(
               ColorPicker.colors.length,
-              (index) => ElevatedButton(
+              (index) => GestureDetector(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: ColorPicker.colors[index % ColorPicker.colors.length],
+                  ),
+                  
+                ),
+                
+              )
+              /*(index) => ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorPicker.colors[index % ColorPicker.colors.length],
                   foregroundColor: index == widget._currentColor ? Colors.yellow : null,
@@ -36,7 +47,7 @@ class _ColorPickerState extends State<ColorPicker> {
                 },
                 child: Text('Color $index'),
               ),
-            ),
+            */),
           ),
         ),
       ],
