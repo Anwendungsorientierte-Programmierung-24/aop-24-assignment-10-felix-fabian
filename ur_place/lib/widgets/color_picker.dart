@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class ColorPicker extends StatelessWidget {
   final ValueChanged _changed;
+  
   static final List<Color> colors = [Colors.black, Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange];
+
 
   ColorPicker({required ValueChanged setBrushColor, super.key}) : _changed = setBrushColor;
 
