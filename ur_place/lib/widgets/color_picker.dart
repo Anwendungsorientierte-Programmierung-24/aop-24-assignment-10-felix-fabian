@@ -4,15 +4,7 @@ class ColorPicker extends StatefulWidget {
   final ValueChanged<Color> _changed;
   late int _currentColor;
 
-  static final List<Color> colors = [
-    Colors.white,
-    Colors.black,
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.yellow,
-    Colors.orange,
-  ];
+  static final List<Color> colors = [Colors.white, Colors.black, Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange, Colors.purple];
 
   ColorPicker({
     required ValueChanged<Color> setBrushColor,
@@ -29,11 +21,11 @@ class _ColorPickerState extends State<ColorPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150, // Adjust height as needed to fit within the layout
+      height: 150,
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4, // Number of columns
-          childAspectRatio: 2.0, // Aspect ratio of each item
+          childAspectRatio: 2.0, // appearence of the boxes
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
         ),
@@ -41,19 +33,20 @@ class _ColorPickerState extends State<ColorPicker> {
         itemBuilder: (context, index) {
           Color borderColor;
           if (index == widget._currentColor) {
-            borderColor = Colors.yellow;
+            // shows which color is active rn
+            borderColor = Colors.grey;
           } else {
             borderColor = Colors.transparent;
           }
-          
+
           return GestureDetector(
             onTap: () {
-              setState(() => widget._currentColor = index); // We store the current color locally so we can update our visual selection.
+              setState(() => widget._currentColor = index); // We store the current color locally so we can update our visual selection
               widget._changed(ColorPicker.colors[index]);
             },
             child: Container(
-              padding: EdgeInsets.all(5),
-              margin: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: ColorPicker.colors[index],
                 border: Border.all(
