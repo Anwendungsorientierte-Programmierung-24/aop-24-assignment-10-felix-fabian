@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorPicker extends StatefulWidget {
+
   final ValueChanged<Color> _changed;
   late int _currentColor;
 
@@ -11,7 +12,6 @@ class ColorPicker extends StatefulWidget {
     required int currentColor,
     super.key,
   })  : _changed = setBrushColor,
-        _currentColor = currentColor;
 
   @override
   State<ColorPicker> createState() => _ColorPickerState();
