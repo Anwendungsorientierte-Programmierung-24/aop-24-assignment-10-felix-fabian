@@ -9,6 +9,7 @@ import 'package:ur_place/pages/login_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize Firebase connection.
   try {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   } catch (e) {
@@ -32,11 +33,13 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: StreamBuilder(
+        // Listen to authentication changes (login/logout) and 
+        // ensure the user is brought to the appropriate screen.
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData) { // We're logged in, go to Canvas.
             return const HomePage();
-          } else {
+          } else { // We're not logged in, go to Login/Register
             return const LoginPage();
           }
         },
