@@ -27,8 +27,10 @@ class _PlaceViewState extends State<PlaceView> {
 
   void _loadInitialCanvas() async {
     DocumentSnapshot doc = await _firestore.collection('canvas').doc(_documentId).get();
-    canvas = await doc.data() as Map<String, dynamic>;
-    setState(() {});
+
+    setState(() {
+      canvas = doc.data() as Map<String, dynamic>;
+    });
   }
 
   void setBrushColor(Color color) => setState(() => _brushColor = color);
@@ -36,7 +38,9 @@ class _PlaceViewState extends State<PlaceView> {
   Future<void> _updatePixelColor(int index) async {
     try {
       await _firestore.collection('canvas').doc(_documentId).update(
-        {index.toString(): ColorPicker.colors.indexOf(_brushColor)},
+        {
+          index.toString(): ColorPicker.colors.indexOf(_brushColor),
+        },
       );
     } catch (e) {
       debugPrint('Error updating pixel color: $e');
