@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ur_place/views/place_view.dart';
@@ -17,21 +15,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomePage'),
+        title: const Text('UR/Place'),
         actions: [
           IconButton(
-            icon: Icon(Icons.login),
+            icon: const Icon(Icons.login),
             onPressed: () => _auth.signOut(),
           ),
         ],
       ),
-      body: Column(
+      body: const Column(
         children: [
-          const Text('TODO(fbraun): Not final UI.', style: TextStyle(color: Colors.red, fontSize: 20)),
-          SizedBox(height: 150),
-          Center(
-            child: PlaceView(),
-          ),
+          Center(child: PlaceView()),
         ],
       ),
     );
