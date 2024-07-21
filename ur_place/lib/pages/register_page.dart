@@ -33,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('RegisterPage')),
+      appBar: AppBar(title: const Text('Register')),
       body: Center(
         child: Container(
           margin: const EdgeInsets.all(30),
@@ -53,9 +53,10 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(
                 height: 20,
               ),
-              TextButton(onPressed: () {
-                _createAccount();
-              }, child: const Text('Register', style: TextStyle(fontSize: 18),))
+              TextButton(onPressed: () async {
+                await _createAccount();
+                Navigator.pop(context);
+              }, child: const Text('Create account', style: TextStyle(fontSize: 18),))
             ],
           ),
         ),

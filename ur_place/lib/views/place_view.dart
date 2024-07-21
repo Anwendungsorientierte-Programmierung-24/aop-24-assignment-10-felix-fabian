@@ -27,8 +27,10 @@ class _PlaceViewState extends State<PlaceView> {
 
   void _loadInitialCanvas() async {
     DocumentSnapshot doc = await _firestore.collection('canvas').doc(_documentId).get();
-    canvas = await doc.data() as Map<String, dynamic>;
-    setState(() {});
+
+    setState(() {
+      canvas = doc.data() as Map<String, dynamic>;
+    });
   }
 
   void setBrushColor(Color color) => setState(() => _brushColor = color);
@@ -36,7 +38,9 @@ class _PlaceViewState extends State<PlaceView> {
   Future<void> _updatePixelColor(int index) async {
     try {
       await _firestore.collection('canvas').doc(_documentId).update(
-        {index.toString(): ColorPicker.colors.indexOf(_brushColor)},
+        {
+          index.toString(): ColorPicker.colors.indexOf(_brushColor),
+        },
       );
     } catch (e) {
       debugPrint('Error updating pixel color: $e');
@@ -58,21 +62,23 @@ class _PlaceViewState extends State<PlaceView> {
           (index) => canvas[index.toString()] ?? 0,
         );
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            PixelGrid(
-              pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
-              size: size,
-              changed: (value) {
-                setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
-                _updatePixelColor(value);
-              },
-            ),
-            const SizedBox(height: 30),
-            ColorPicker(setBrushColor: (color) => setBrushColor(color), currentColor: ColorPicker.colors.indexOf(_brushColor)),
-          ],
+        return Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisSize: MainAxisSize.max,
+            children: [
+              
+              PixelGrid(
+                pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
+                size: size,
+                changed: (value) {
+                  setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
+                  _updatePixelColor(value);
+                },
+              ),
+              ColorPicker(setBrushColor: (color) => setBrushColor(color), currentColor: ColorPicker.colors.indexOf(_brushColor)),
+            ],
+          ),
         );
       },
     );
