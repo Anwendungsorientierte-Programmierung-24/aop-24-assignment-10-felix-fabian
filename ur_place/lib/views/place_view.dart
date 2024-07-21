@@ -29,6 +29,7 @@ class _PlaceViewState extends State<PlaceView> {
     DocumentSnapshot doc = await _firestore.collection('canvas').doc(_documentId).get();
 
     setState(() {
+      // Get the current state of the canvas online, and store locally.
       canvas = doc.data() as Map<String, dynamic>;
     });
   }
@@ -50,13 +51,15 @@ class _PlaceViewState extends State<PlaceView> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
+      // Ensure we listen to any changes to the online state of the canvas, and update accordingly.
       stream: _firestore.collection('canvas').doc(_documentId).snapshots(),
       builder: (context, snapshot) {
-        // Update with online data if it's available right now.
         if (snapshot.hasData) {
+          // Update with online data if it's available right now.
           canvas = snapshot.data!.data() as Map<String, dynamic>;
         }
 
+        // If we didn't get new data, we continue using the local state.
         _pixelColors = List<int>.generate(
           size * size,
           (index) => canvas[index.toString()] ?? 0,
@@ -64,16 +67,16 @@ class _PlaceViewState extends State<PlaceView> {
 
         return Expanded(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Position all elements with space between and around them.
             children: [
-              
               PixelGrid(
+                // Transform the integers from Firebase to their respective colors.
                 pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
                 size: size,
-                changed: (value) {
-                  setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
-                  _updatePixelColor(value);
+                changed: (index) {
+                  // Update
+                  setState(() => _pixelColors[index] = ColorPicker.colors.indexOf(_brushColor));
+                  _updatePixelColor(index);
                 },
               ),
               ColorPicker(setBrushColor: (color) => setBrushColor(color), currentColor: ColorPicker.colors.indexOf(_brushColor)),

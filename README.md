@@ -80,19 +80,16 @@ Die Aufgabenverteilung im Team muss im folgenden Abschnitt dokumentiert werden.
 
 ## Dokumentation der Aufgabenverteilung
 
-Aufgaben Teammitglied 1: {Name hier einfügen}
-- {Aufgabe 1}
-- {Aufgabe 2}
-- {Aufgabe 3}
-- {Aufgabe 4}
-- {...}
+Aufgaben Teammitglied 1: Felix
+- Canvas Grid
+- Canvas Color Picker logic
+- FireStore Database
 
-Aufgaben Teammitglied 2: {Name hier einfügen}
-- {Aufgabe 1}
-- {Aufgabe 2}
-- {Aufgabe 3}
-- {Aufgabe 4}
-- {...}
+Aufgaben Teammitglied 2: Fabian
+- Login/Register Screen
+- Firebase Auth
+- Color Picker UI
+
 
 
 ## Checkliste für das Übungsblatt

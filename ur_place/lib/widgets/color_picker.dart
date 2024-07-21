@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ColorPicker extends StatefulWidget {
-  final ValueChanged<Color> _changed;
+  final ValueChanged<Color> _changed; // Called to inform canvas of what the selected brush color is.
   late int _currentColor;
 
+  // Cannonical list of available colors. We store colors by index of this array, so it's public/static.
   static final List<Color> colors = [Colors.white, Colors.black, Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange, Colors.purple];
 
   ColorPicker({
@@ -25,8 +26,8 @@ class _ColorPickerState extends State<ColorPicker> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Pick a color: ', textAlign: TextAlign.left, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Container(
+          const Text('Pick a color: ', textAlign: TextAlign.left, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          SizedBox(
             height: 150,
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
