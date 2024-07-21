@@ -6,8 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:ur_place/firebase_options.dart';
 import 'package:ur_place/pages/home_page.dart';
 import 'package:ur_place/pages/login_page.dart';
-import 'package:ur_place/test/debug_page.dart';
-import 'package:ur_place/test/feature_flag_manager.dart';
 
 import 'data/auth_service.dart';
 
@@ -21,7 +19,7 @@ Future<void> main() async {
   }
 
   FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: true);
-  
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => AuthService(),
@@ -33,7 +31,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,18 +39,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: FFManager.isEnabled(FeatureFlag.enableDebugPage)
-          ? const DebugPage()
-          : StreamBuilder(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return const HomePage();
-                } else {
-                  return const LoginPage();
-                }
-              },
-            ),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const HomePage();
+          } else {
+            return const LoginPage();
+          }
+        },
+      ),
     );
   }
 }
