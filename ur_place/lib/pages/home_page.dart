@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: const Column(
         children: [
-          Center(child: PlaceView()),
+          PlaceView(),
         ],
       ),
     );

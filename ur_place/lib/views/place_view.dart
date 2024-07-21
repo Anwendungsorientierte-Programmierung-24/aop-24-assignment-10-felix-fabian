@@ -62,21 +62,23 @@ class _PlaceViewState extends State<PlaceView> {
           (index) => canvas[index.toString()] ?? 0,
         );
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            PixelGrid(
-              pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
-              size: size,
-              changed: (value) {
-                setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
-                _updatePixelColor(value);
-              },
-            ),
-            const SizedBox(height: 30),
-            ColorPicker(setBrushColor: (color) => setBrushColor(color), currentColor: ColorPicker.colors.indexOf(_brushColor)),
-          ],
+        return Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisSize: MainAxisSize.max,
+            children: [
+              
+              PixelGrid(
+                pixelColors: _pixelColors.map((e) => ColorPicker.colors[e]).toList(),
+                size: size,
+                changed: (value) {
+                  setState(() => _pixelColors[value] = ColorPicker.colors.indexOf(_brushColor));
+                  _updatePixelColor(value);
+                },
+              ),
+              ColorPicker(setBrushColor: (color) => setBrushColor(color), currentColor: ColorPicker.colors.indexOf(_brushColor)),
+            ],
+          ),
         );
       },
     );
